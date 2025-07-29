@@ -33,7 +33,7 @@ endef
 define Build/Compile
 	(cd $(PKG_BUILD_DIR)/cmd/dtnd; \
 		GOOS=linux GOARCH=$(GO_ARCH) CGO_ENABLED=0 \
-		$(HOST_GO_CMD) build -v -o $(PKG_BUILD_DIR)/dtnd . )
+		go build -v -o $(PKG_BUILD_DIR)/dtnd . )
 endef
 
 define Package/telestonet/install
