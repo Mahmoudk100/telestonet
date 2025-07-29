@@ -1,14 +1,15 @@
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=dtn7
-PKG_VERSION:=20240723
+PKG_NAME:=telestonet
+PKG_VERSION:=2024-07-29 # Or any dummy version
 PKG_RELEASE:=1
 
-# Colon in URL: Add space before the colon if Makefile complains.
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_URL:= https://github.com/dtn7/dtn7-go.git
+PKG_SOURCE_URL:=https://github.com/dtn7/dtn7-go.git
 PKG_SOURCE_VERSION:=main
-PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
+PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+PKG_MIRROR_HASH:=skip
 
 GO_PKG:=github.com/dtn7/dtn7-go
 GO_BUILD_PKG:=github.com/dtn7/dtn7-go/cmd/dtnd github.com/dtn7/dtn7-go/cmd/dtnrecv github.com/dtn7/dtn7-go/cmd/dtnsend
