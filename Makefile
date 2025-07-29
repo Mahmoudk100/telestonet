@@ -12,6 +12,11 @@ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
 
+GO_PKG:=github.com/dtn7/dtn7-go
+
+# Set the GO_ARCH for your OpenWrt target!
+GO_ARCH:=mipsle
+
 include $(INCLUDE_DIR)/package.mk
 
 define Package/telestonet
@@ -25,12 +30,10 @@ define Package/telestonet/description
   DTN7 Delay Tolerant Networking node daemon
 endef
 
-# Override build steps
 define Build/Compile
-	# This is a Go project!
 	(cd $(PKG_BUILD_DIR)/cmd/dtnd; \
-		GOOS=linux GOARCH=$(GO_ARCH) \
-		$(HOST_GO_CMD) build -o $(PKG_BUILD_DIR)/dtnd . )
+		GOOS=linux GOARCH=$(GO_ARCH) CGO_ENABLED=0 \
+		$(HOST_GO_CMD) build -v -o $(PKG_BUILD_DIR)/dtnd . )
 endef
 
 define Package/telestonet/install
